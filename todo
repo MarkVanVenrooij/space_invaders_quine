@@ -1,0 +1,11 @@
+moving invaders
+- if collision with wall -> move down & inverse direction
+-- implement move down
+-- detect collision
+
+
+defender shooting
+aliens shooting
+
+
+
