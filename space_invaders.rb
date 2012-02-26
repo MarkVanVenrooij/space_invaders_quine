@@ -1,19 +1,9 @@
 class SpaceInvaders
-  def initialize
-    @field =
-'######################################################
-#01 *****                                            #
-#02                                                  #
-#03                                                  #
-#04                                                  #
-#05                                                  #
-#06                                                  #
-#07                                                  #
-#08                                                  #
-#09                                                  #
-#XX                                          %       #
-###0        1         2         3         4         5#
-###12345678901234567890123456789012345678901234567890#'
+  attr_reader :field
+
+  def initialize(field)
+    @field = field
+
   end
 
   def print_state
@@ -90,15 +80,34 @@ class SpaceInvaders
     line.split(//).rotate(1).join
   end
 
+  def move_invaders_down
+    lines = @field.split(/\n/)
+    result_lines = lines.collect {|s| s = move_line_down(s)}
+    #remove last field line
+
+    lines.each do |s|
+      i = lines.index(s)
+      @field.sub!(lines[i],result_lines[i]) if(result_lines[i] != nil)
+    end
+
+    #add an extra first line
+    @field.insert(0,"#01                                                  #\n")
+    #remove the last field line
+    regex = "#" + max_field_line + '[\s|\*]{50}#\n*'
+    @field.sub!(Regexp.new(regex),'')
+  end
+
+  def max_field_line
+    index = @field.rindex(/#(\d\d)[\s|\*]{50}#\n*/)
+    @field.match(/#(\d\d)[\s|\*]{50}#\n*/,index)
+    $1
+  end
+
+  def move_line_down(line)
+    if(line.match(/#\d(\d)(.*)#/))
+      '#0' + (Integer($1) + 1).to_s + $2 + '#'
+    end
+  end
 end
 
-#detect collision with bounds
-
-invader = SpaceInvaders.new
-invader.print_state
-#invader.move_player(11)
-#invader.print_state
-invader.move_invaders_left
-#invader.move_invaders_left
-invader.print_state
 
