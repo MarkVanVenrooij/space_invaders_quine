@@ -17,8 +17,21 @@ moving invaders
 - if collision with wall -> move down & inverse direction
 
 defender shooting
+- respect invaders + old darts on last row
+- moving darts up
+- detect colision
+- removing invader + dart if colision
+
+
 aliens shooting
 detecting if invaders invaded our realm
+
+put all pieces together
+
+make a real quine 
+- be sure to write to the source file
+
+
 
 
 

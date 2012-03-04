@@ -148,15 +148,18 @@ field =
 #06                                                  #
 #07                                                  #
 #08                                                  #
-#09                                                  #
-#XX                                          %       #
+#09i                                                 #
+#XX%                                                 #
 ###0        1         2         3         4         5#
 ###12345678901234567890123456789012345678901234567890#
 ######################################################
 "
 
 invaders =  SpaceInvaders.new field
+#puts invaders.field
 invaders.player_shoot 
+#puts invaders.field
+#invaders.print_state
 invaders.write_file
 
 
